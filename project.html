@@ -31,7 +31,9 @@
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid d-flex align-items-center d-lg-block">
-      <lord-icon class="navbar-brand navbar-expand-sm navbar-icon" src="https://cdn.lordicon.com/mwgfcdaj.json"
+      <lord-icon class="navbar-brand navbar-expand-sm navbar-icon" src="https://cdn.lordicon.com/rdrufeij.json"
+      
+      colors="primary:#a66037,secondary:#eee966"
         style="width:40px;height:40px ; margin-bottom: -3px;">
       </lord-icon>
       <a class="navbar-brand ms-2" href="https://lordicon.com/" style="font-size:1.25rem; ">
@@ -48,7 +50,7 @@
             <a class="nav-link" href="./project.html">Home</a>
           </li>
           <li class="nav-item  ">
-            <a class="nav-link" href="./nav.html">Menu</a>
+            <a class="nav-link" href="./menu.html">Menu</a>
           </li>
           <li class="nav-item  ">
             <a class="nav-link" href="./project.css">Contact Us</a>
@@ -68,7 +70,22 @@
           <button type="button" class="btn btn-warning  me-3  py-2 px-4 " id="signupBtn">Sign-up</button>
         </div>
         <!-- Dropdown Login Form -->
-
+        <div class="login-dropdown" id="loginDropdown" style="display:none">
+          <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+          </form>
+        </div>
+        <div class="signup-dropdown" id="signupDropdown" style="display:none">
+          <form>
+            <input type="text" placeholder="Username" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <button type="submit" class="btn btn-success w-100 mt-2">Sign-up</button>
+          </form>
+        </div>
       </div>
     </div>
   </nav>
@@ -103,3 +120,66 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid d-flex align-items-center">
+      <lord-icon class="navbar-brand" src="https://cdn.lordicon.com/mwgfcdaj.json" style="width:40px;height:40px; margin-bottom: -3px;"></lord-icon>
+      <a class="navbar-brand ms-2" href="https://lordicon.com/" style="font-size:1.25rem;">Foodiez</a>
+      <button class="navbar-toggler ms-lg-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="./project.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./nav.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="./project.css">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="./project.js">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="./nav.html">FAQs</a></li>
+      </ul>
+      <div class="d-flex flex-column align-items-end mt-2">
+        <button type="button" class="btn btn-outline-light me-3 py-2 px-4" id="loginBtn">Login</button>
+        <button type="button" class="btn btn-warning me-3 py-2 px-4" id="signupBtn">Sign-up</button>
+      </div>
+    </div>
+  </nav>
+
+Dropdown Login Form 
+  <div class="dropdown-container" id="loginDropdown">
+    <form class="p-3">
+      <input type="email" class="form-control mb-2" placeholder="Email" required>
+      <input type="password" class="form-control mb-2" placeholder="Password" required>
+      <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+    </form>
+  </div>
+
+  Dropdown Sign-up Form -->
+  <!-- <div class="dropdown-container" id="signupDropdown">
+    <form class="p-3">
+      <input type="text" class="form-control mb-2" placeholder="Username" required>
+      <input type="email" class="form-control mb-2" placeholder="Email" required>
+      <input type="password" class="form-control mb-2" placeholder="Password" required>
+      <input type="password" class="form-control mb-2" placeholder="Confirm Password" required>
+      <button type="submit" class="btn btn-success w-100 mt-2">Sign-up</button>
+    </form>
+  </div> --> 
