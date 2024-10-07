@@ -1,25 +1,25 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
-    const loginDropdown = document.getElementById('loginDropdown');
-    const signupDropdown = document.getElementById('signupDropdown');
-  
-    loginBtn.addEventListener('click', function() {
-      if (loginDropdown.style.display === 'none' || loginDropdown.style.display === '') {
-        loginDropdown.style.display = 'block';
-        signupDropdown.style.display = 'none'; // Hide signup form
-      } else {
-        loginDropdown.style.display = 'none';
-      }
-    });
-  
-    // signupBtn.addEventListener('click', function() {
-    //   if (signupDropdown.style.display === 'none' || signupDropdown.style.display === '') {
-    //     signupDropdown.style.display = 'block';
-    //     loginDropdown.style.display = 'none'; // Hide login form
-    //   } else {
-    //     signupDropdown.style.display = 'none';
-    //   }
-    // });
-  });
-  
+document.getElementById("loginBtn").addEventListener("click", function() {
+  var loginDropdown = document.getElementById("loginDropdown");
+  var signupDropdown = document.getElementById("signupDropdown");
+  loginDropdown.style.display = (loginDropdown.style.display === "none" || loginDropdown.style.display === "") ? "block" : "none";
+  signupDropdown.style.display = "none"; // Hide sign-up if open
+});
+
+document.getElementById("signupBtn").addEventListener("click", function() {
+  var signupDropdown = document.getElementById("signupDropdown");
+  var loginDropdown = document.getElementById("loginDropdown");
+  signupDropdown.style.display = (signupDropdown.style.display === "none" || signupDropdown.style.display === "") ? "block" : "none";
+  loginDropdown.style.display = "none"; // Hide login if open
+});
+
+// Optional: Add logic to close dropdowns when clicking outside of them
+window.addEventListener("click", function(event) {
+  var loginDropdown = document.getElementById("loginDropdown");
+  var signupDropdown = document.getElementById("signupDropdown");
+  if (!event.target.matches('#loginBtn') && !event.target.closest('.login-dropdown')) {
+    loginDropdown.style.display = "none";
+  }
+  if (!event.target.matches('#signupBtn') && !event.target.closest('.signup-dropdown')) {
+    signupDropdown.style.display = "none";
+  }
+});
