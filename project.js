@@ -1,25 +1,94 @@
-document.getElementById("loginBtn").addEventListener("click", function() {
-  var loginDropdown = document.getElementById("loginDropdown");
-  var signupDropdown = document.getElementById("signupDropdown");
-  loginDropdown.style.display = (loginDropdown.style.display === "none" || loginDropdown.style.display === "") ? "block" : "none";
-  signupDropdown.style.display = "none"; // Hide sign-up if open
+const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
+const loginDropdown = document.getElementById('loginDropdown');
+const signupDropdown = document.getElementById('signupDropdown');
+const collapsibleNavbar = document.getElementById('collapsibleNavbar');
+const exploreButton = document.getElementById('explore');
+const iconButton = document.getElementById('icon');
+
+// Toggle Login Dropdown
+loginBtn.addEventListener('click', (event) => {
+  event.stopPropagation();
+  signupDropdown.style.display = 'none'; // Hide sign-up dropdown if open
+  loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-document.getElementById("signupBtn").addEventListener("click", function() {
-  var signupDropdown = document.getElementById("signupDropdown");
-  var loginDropdown = document.getElementById("loginDropdown");
-  signupDropdown.style.display = (signupDropdown.style.display === "none" || signupDropdown.style.display === "") ? "block" : "none";
-  loginDropdown.style.display = "none"; // Hide login if open
+// Toggle Sign-up Dropdown
+signupBtn.addEventListener('click', (event) => {
+  event.stopPropagation();
+  loginDropdown.style.display = 'none'; // Hide login dropdown if open
+  signupDropdown.style.display = signupDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-// Optional: Add logic to close dropdowns when clicking outside of them
-window.addEventListener("click", function(event) {
-  var loginDropdown = document.getElementById("loginDropdown");
-  var signupDropdown = document.getElementById("signupDropdown");
-  if (!event.target.matches('#loginBtn') && !event.target.closest('.login-dropdown')) {
-    loginDropdown.style.display = "none";
+// Close dropdowns and navbar when clicking outside
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('#loginDropdown') && !event.target.closest('#loginBtn')) {
+    loginDropdown.style.display = 'none';
   }
-  if (!event.target.matches('#signupBtn') && !event.target.closest('.signup-dropdown')) {
-    signupDropdown.style.display = "none";
+  if (!event.target.closest('#signupDropdown') && !event.target.closest('#signupBtn')) {
+    signupDropdown.style.display = 'none';
   }
+  if (!event.target.closest('.navbar-collapse') && !event.target.closest('.navbar-toggler')) {
+    collapsibleNavbar.classList.remove('show');
+  }
+});
+
+// Explore Button Navigation
+exploreButton.addEventListener('click', function() {
+  window.location.href = "menu5.html";
+});
+
+// Icon Button Navigation
+iconButton.addEventListener('click', function() {
+  window.location.href = "about.html";
+});
+
+// Handle Login
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById('loginUsername').value;
+  const password = document.getElementById('loginPassword').value;
+
+  fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username, password }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert(data.message);
+        loginDropdown.style.display = 'none';
+      } else {
+        alert(data.message);
+      }
+    });
+});
+
+// Handle Signup
+document.getElementById('signupForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById('signupUsername').value;
+  const password = document.getElementById('signupPassword').value;
+
+  fetch('/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username, password }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert(data.message);
+        signupDropdown.style.display = 'none';
+      } else {
+        alert(data.message);
+      }
+    });
 });
