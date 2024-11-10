@@ -38,9 +38,9 @@ db.connect(err => {
 // Sign-up Endpoint
 app.post('/signup', (req, res) => {
   const { username, email, password } = req.body; 
-  const query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+  const queri = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
 
-  db.query(query, [username, email, password], (err, result) => {
+  db.query(queri, [username, email, password], (err, result) => {
     if (err) {
       console.error('Error executing query:', err);
       return res.status(500).json({ message: 'Error registering user', error: err });
@@ -53,9 +53,9 @@ app.post('/signup', (req, res) => {
 // Login Endpoint
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
+  const queri = 'SELECT * FROM users WHERE email = ? AND password = ?';
 
-  db.query(query, [email, password], (err, results) => {
+  db.query(queri, [email, password], (err, results) => {
     if (err) {
       console.error('Error during login query:', err);
       return res.status(500).json({ message: 'Error during login', error: err });
