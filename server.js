@@ -1,56 +1,74 @@
 const express = require('express');
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');  // This loads the fs module
-
+const cors = require('cors');
 
 const app = express();
+const port = 3000;
+
+// CORS configuration to allow requests from your frontend
+const corsOptions = {
+  origin: 'http://127.0.0.1:3001',  // Replace with the correct URL of your frontend
+  methods: ['GET', 'POST'],         // Methods you want to allow
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Headers you want to allow
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Middleware
 app.use(bodyParser.json());
 
-// Connect to MongoDB (replace <db_url> with your MongoDB URL)
-mongoose.connect('<db_url>', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// User schema and model
-const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
+// Database Connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',              // Your MySQL username
+  password: 'anu@172005',    // Your MySQL password
+  database: 'foodiezdb'      // Your MySQL database name
 });
 
-const User = mongoose.model('User', userSchema);
-
-// Secret key for JWT
-const JWT_SECRET = 'your_secret_key_here';
-
-// Login endpoint
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-
-  if (user && await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
-    return res.json({ message: 'Login successful', token });
+db.connect(err => {
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
   }
-  res.status(401).json({ message: 'Invalid credentials' });
+  console.log('Connected to MySQL database');
 });
 
-// Sign-up endpoint
-app.post('/signup', async (req, res) => {
+// Sign-up Endpoint
+app.post('/signup', (req, res) => {
+  const { username, email, password } = req.body; 
+  const query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+
+  db.query(query, [username, email, password], (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ message: 'Error registering user', error: err });
+    }
+    console.log('User signed up:', { username, email });
+    res.status(201).json({ message: 'User registered successfully' });
+  });
+});
+
+// Login Endpoint
+app.post('/login', (req, res) => {
   const { email, password } = req.body;
+  const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
 
-  const existingUser = await User.findOne({ email });
-  if (existingUser) return res.status(400).json({ message: 'User already exists' });
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = new User({ email, password: hashedPassword });
-  await newUser.save();
-
-  res.json({ message: 'User registered successfully' });
+  db.query(query, [email, password], (err, results) => {
+    if (err) {
+      console.error('Error during login query:', err);
+      return res.status(500).json({ message: 'Error during login', error: err });
+    }
+    if (results.length > 0) {
+      res.status(200).json({ message: 'Login successful', user: results[0] });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  });
 });
 
-// Start server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Start Server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
