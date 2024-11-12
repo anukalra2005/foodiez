@@ -8,7 +8,7 @@ const port = 3000;
 
 // CORS configuration to allow requests from your frontend
 const corsOptions = {
-  origin: 'http://127.0.0.1:3001',  // Replace with the correct URL of your frontend
+  origin: '*', // Replace with the correct URL of your frontend
   methods: ['GET', 'POST'],         // Methods you want to allow
   allowedHeaders: ['Content-Type', 'Authorization'],  // Headers you want to allow
 };

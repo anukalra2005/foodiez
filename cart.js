@@ -1,64 +1,39 @@
-// cart.js - Add to Cart and Update Cart Functionality
-
-// Event listener for Add to Cart buttons
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', (event) => {
-        const dishName = event.target.getAttribute('data-name');
-        const dishPrice = parseInt(event.target.getAttribute('data-price'));
-
-        // Save item to localStorage
-        saveToLocalStorage(dishName, dishPrice);
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all Add to Cart buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+  
+    // Add event listeners for each button
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
+  
+        // Get dish details from the button's parent
+        const item = button.closest('.item');
+        const dishName = item.querySelector('p').textContent.split('\n')[0].trim(); // Get dish name
+        const price = item.querySelector('p').textContent.split('Rs.')[1].trim(); // Get price (after Rs.)
+        const userId = 1; // Set a sample user ID, replace this with actual user info
+  
+        try {
+          // Make a POST request to the server to add the dish to the cart
+          const response = await fetch('http://localhost:3000/add-to-cart', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId, dishName, price })
+          });
+  
+          // Handle server response
+          const data = await response.json();
+          if (response.ok) {
+            alert('Item added to cart successfully!');
+          } else {
+            alert('Failed to add item to cart: ' + data.message);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred while adding to cart.');
+        }
+      });
     });
-});
-
-// Function to save the item to localStorage
-function saveToLocalStorage(dishName, dishPrice) {
-    // Get the current cart from localStorage or initialize an empty array
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Check if the item is already in the cart
-    const existingItemIndex = cart.findIndex(item => item.name === dishName);
-
-    if (existingItemIndex !== -1) {
-        // If the item already exists, increase its quantity
-        cart[existingItemIndex].quantity += 1;
-    } else {
-        // If the item doesn't exist, add it to the cart with quantity 1
-        cart.push({ name: dishName, price: dishPrice, quantity: 1 });
-    }
-
-    // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Function to update the cart display on the Cart Page
-function updateCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalElement = document.getElementById('total');
-    
-    // Get cart items from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Clear current cart items in the UI
-    cartItemsContainer.innerHTML = '';
-
-    // Initialize total price
-    let total = 0;
-
-    // Display each item in the cart
-    cart.forEach(item => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between');
-        listItem.innerHTML = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
-        cartItemsContainer.appendChild(listItem);
-        
-        // Update the total price
-        total += item.price * item.quantity;
-    });
-
-    // Update the total price display
-    totalElement.textContent = `Total: Rs. ${total}`;
-}
-
-// Call updateCart on page load to display the current cart
-updateCart();
+  });
