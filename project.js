@@ -35,6 +35,7 @@ const loginDropdown = document.getElementById("loginDropdown");
 const signupDropdown = document.getElementById("signupDropdown");
 const collapsibleNavbar = document.getElementById("collapsibleNavbar");
 const exploreButton = document.getElementById("explore");
+const specialButton = document.getElementById("special");
 
 // Toggle Login Dropdown
 loginBtn.addEventListener("click", (event) => {
@@ -77,4 +78,7 @@ document.addEventListener("click", (event) => {
 // Explore Button Navigation
 exploreButton.addEventListener("click", function () {
   window.location.href = "menu5.html";
+});
+specialButton.addEventListener("click", function () {
+  window.location.href = "special.html";
 });

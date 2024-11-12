@@ -72,3 +72,43 @@ app.post('/login', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+app.use(bodyParser.json());
+
+
+// add to cart backend
+// Add to Cart Endpoint
+// app.post('/add-to-cart', (req, res) => {
+//   const { userId, dishName, price } = req.body; // Ensure `userId` is obtained from a login session
+//   const query = 'INSERT INTO cart (user_id, dish_name, price, quantity) VALUES (?, ?, ?, 1) ON DUPLICATE KEY UPDATE quantity = quantity + 1';
+
+//   db.query(query, [userId, dishName, price], (err, result) => {
+//     if (err) {
+//       console.error('Error adding to cart:', err);
+//       return res.status(500).json({ message: 'Error adding to cart', error: err });
+//     }
+//     res.status(201).json({ message: 'Dish added to cart successfully' });
+//   });
+// });
+// Add to cart Endpoint
+// Add to Cart Endpoint
+app.post('/add-to-cart', (req, res) => {
+  console.log('Add to cart request received');
+  //console.log('Received POST request to /add-to-cart');  // Debugging line
+  const { userId, dishName, price } = req.body;
+
+  // Check if the user and dish data are valid
+  if (!userId || !dishName || !price) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  // SQL query to add the dish to the user's cart
+  const query = 'INSERT INTO cart (user_id, dish_name, price) VALUES (?, ?, ?)';
+
+  db.query(query, [userId, dishName, price], (err, result) => {
+    if (err) {
+      console.error('Error adding to cart:', err);
+      return res.status(500).json({ message: 'Error adding item to cart', error: err });
+    }
+    res.status(200).json({ success: true, message: 'Item added to cart' });
+  });
+});
