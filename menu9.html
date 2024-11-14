@@ -10,19 +10,14 @@
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Quicksand:wght@300..700&family=Rajdhani:wght@300;400;500&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Quicksand:wght@300..700&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body class="box">
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid d-flex align-items-right">
-      <lord-icon class="navbar-brand" src="https://cdn.lordicon.com/mwgfcdaj.json"
-        style="width:40px;height:40px; margin-bottom: -3px;">
-      </lord-icon>
+      <lord-icon class="navbar-brand" src="https://cdn.lordicon.com/mwgfcdaj.json" style="width:40px;height:40px; margin-bottom: -3px;"></lord-icon>
       <a class="navbar-brand ms-2" href="#" style="font-size:1.25rem;">Foodiez</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -33,7 +28,6 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="./project.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="./menu5.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link" href="./contact.html">Contact Us</a></li>
           <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="./faq.html">FAQs</a></li>
         </ul>
@@ -51,7 +45,8 @@
       <img src="./img/aloochat.jpg" alt="Aloo Chaat">
       <p>Aloo Chaat<br>Rs. 50</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Aloo Chaat">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishname" value="aloochat">
         <input type="hidden" name="price" value="50">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
@@ -59,9 +54,10 @@
 
     <div class="item">
       <img src="img/paneer-pakora-1.jpg" alt="Paneer Pakora">
-      <p>Paneer Pakora<br>10 pcs.<br>Rs. 100</p>
+      <p>Paneer Pakora 10 pcs.<br>Rs. 100</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Paneer Pakora">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishname" value="paneer-pakora">
         <input type="hidden" name="price" value="100">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
@@ -71,7 +67,8 @@
       <img src="img/mini-paneer-samosa-1.jpg" alt="Cocktail Samosa">
       <p>Cocktail Samosa<br>Rs. 10 per pcs</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Cocktail Samosa">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishname" value="Cocktail Samosa">
         <input type="hidden" name="price" value="10">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
@@ -81,7 +78,8 @@
       <img src="img/bang-bang-cauliflower-1.jpg" alt="Bang Bang Cauliflower">
       <p>Bang Bang Cauliflower<br>Rs. 250</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Bang Bang Cauliflower">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishName" value="Bang Bang Cauliflower">
         <input type="hidden" name="price" value="250">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
@@ -89,10 +87,11 @@
 
     <div class="item">
       <img src="img/paneer-tikka-recipe-2.jpg" alt="Paneer Tikka">
-      <p>Paneer Tikka<br>Rs. 150</p>
+      <p>Paneer Tikka<br>Rs. 250</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Paneer Tikka">
-        <input type="hidden" name="price" value="150">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishName" value="Paneer Tikka">
+        <input type="hidden" name="price" value="250">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
     </div>
@@ -101,7 +100,8 @@
       <img src="img/sabudana-tikki-1.jpg" alt="Sabudana Tikki">
       <p>Sabudana Tikki<br>Rs. 100</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Sabudana Tikki">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishName" value="Sabudana Tikki">
         <input type="hidden" name="price" value="100">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
@@ -111,21 +111,12 @@
       <img src="img/cutlate.jpeg" alt="Cutlet">
       <p>Cutlet<br>Rs. 80</p>
       <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Cutlet">
+        <input type="hidden" name="userId" value="1">
+        <input type="hidden" name="dishName" value="Cutlet">
         <input type="hidden" name="price" value="80">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
       </form>
     </div>
-
-    <!-- <div class="item">
-      <img src="img/matar-tikki.jpeg" alt="Matar Tikki">
-      <p>Matar Tikki<br>Rs. 80</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="dish" value="Matar Tikki">
-        <input type="hidden" name="price" value="80">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div> -->
   </div>
 </body>
 
