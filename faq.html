@@ -76,32 +76,42 @@
     
     
 
-    <div class="faq-container">
+      <div class="faq-container">
         <h1>Frequently Asked Questions</h1>
 
         <div class="faq">
-            <h2>What is Foodiez?</h2>
-            <p class="answer">Foodiez is a platform that offers a variety of recipes, cooking tips, and food culture information to make your culinary experience exceptional.</p>
+            <h2 onclick="toggleAnswer(this)">What is Foodiez?</h2>
+            <p class="answer" style="display:none;">Foodiez is a platform that offers a variety of recipes, cooking tips, and food culture information to make your culinary experience exceptional.</p>
         </div>
 
         <div class="faq">
-            <h2>How can I order food?</h2>
-            <p class="answer">You can browse our diverse range of food categories, select your favorites, and place an order directly through our platform.</p>
+            <h2 onclick="toggleAnswer(this)">How can I order food?</h2>
+            <p class="answer" style="display:none;">You can browse our diverse range of food categories, select your favorites, and place an order directly through our platform.</p>
         </div>
 
         <div class="faq">
-            <h2>What kind of cuisines do you offer?</h2>
-            <p class="answer">We offer a wide range of cuisines including Indian, Italian, Chinese, and much more!</p>
+            <h2 onclick="toggleAnswer(this)">What kind of cuisines do you offer?</h2>
+            <p class="answer" style="display:none;">We offer a wide range of cuisines including Indian, Italian, Chinese, and much more!</p>
         </div>
 
         <div class="faq">
-            <h2>How do I contact support?</h2>
-            <p class="answer">You can reach out to our support team via the Contact Us page, or send an email to support@foodiez.com.</p>
+            <h2 onclick="toggleAnswer(this)">How do I contact support?</h2>
+            <p class="answer" style="display:none;">You can reach out to our support team via the Contact Us page, or send an email to support@foodiez.com.</p>
         </div>
-
     </div>
+
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            answer.style.display = answer.style.display === "none" ? "block" : "none";
+        }
+    </script>
+
+    
 
     <script src="project.js"></script>
 
 </body>
+
 </html>
+
