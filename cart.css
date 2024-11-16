@@ -1,4 +1,4 @@
-/* Global Styles */
+Global Styles
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: #f8f9fa;
@@ -15,11 +15,11 @@ body {
     margin: 0 auto;
 }
 
-.card {
+.cart {
     margin-bottom: 20px;
 }
 
-.card-img-top {
+.cart-img-top {
     max-height: 200px;
     object-fit: cover;
 }

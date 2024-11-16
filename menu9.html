@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu</title>
   <link rel="stylesheet" href="./a.css">
-  <link rel="stylesheet" href="./style.css">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+  <link rel="stylesheet" href="./menu5.css">
+
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +26,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="container-fluid collapse navbar-collapse" id="collapsibleNavbar">
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="./project.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="./menu5.html">Menu</a></li>
@@ -39,85 +41,47 @@
     </div>
   </nav>
 
-  <div class="container">
-    <!-- Dish Items -->
-    <div class="item">
-      <img src="./img/aloochat.jpg" alt="Aloo Chaat">
-      <p>Aloo Chaat<br>Rs. 50</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishname" value="aloochat">
-        <input type="hidden" name="price" value="50">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div>
-
-    <div class="item">
-      <img src="img/paneer-pakora-1.jpg" alt="Paneer Pakora">
-      <p>Paneer Pakora 10 pcs.<br>Rs. 100</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishname" value="paneer-pakora">
-        <input type="hidden" name="price" value="100">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div>
-
-    <div class="item">
-      <img src="img/mini-paneer-samosa-1.jpg" alt="Cocktail Samosa">
-      <p>Cocktail Samosa<br>Rs. 10 per pcs</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishname" value="Cocktail Samosa">
-        <input type="hidden" name="price" value="10">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div>
-
-    <div class="item">
-      <img src="img/bang-bang-cauliflower-1.jpg" alt="Bang Bang Cauliflower">
-      <p>Bang Bang Cauliflower<br>Rs. 250</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishName" value="Bang Bang Cauliflower">
-        <input type="hidden" name="price" value="250">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div>
-
-    <div class="item">
-      <img src="img/paneer-tikka-recipe-2.jpg" alt="Paneer Tikka">
-      <p>Paneer Tikka<br>Rs. 250</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishName" value="Paneer Tikka">
-        <input type="hidden" name="price" value="250">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div>
-
-    <div class="item">
-      <img src="img/sabudana-tikki-1.jpg" alt="Sabudana Tikki">
-      <p>Sabudana Tikki<br>Rs. 100</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishName" value="Sabudana Tikki">
-        <input type="hidden" name="price" value="100">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
-    </div>
-
-    <div class="item">
-      <img src="img/cutlate.jpeg" alt="Cutlet">
-      <p>Cutlet<br>Rs. 80</p>
-      <form action="http://localhost:3000/add-to-cart" method="POST">
-        <input type="hidden" name="userId" value="1">
-        <input type="hidden" name="dishName" value="Cutlet">
-        <input type="hidden" name="price" value="80">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-      </form>
+  <div class="container mt-5">
+    <!-- <div class="row"> -->
+      <div class="item text-center">
+        <img src="./img/aloochat.jpg" alt="Aloo Chaat" class="img-fluid mb-2">
+        <p>Aloo Chaat<br>Rs. 50</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="aloochat" data-price="50">Add To Cart</button>
+      </div>
+      <div class="item text-center">
+        <img src="img/paneer-pakora-1.jpg" alt="Paneer Pakora" class="img-fluid mb-2">
+        <p>Paneer Pakora 10 pcs.<br>Rs. 100</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="paneer-pakora" data-price="100">Add To Cart</button>
+      </div>
+      <div class="item text-center">
+        <img src="img/mini-paneer-samosa-1.jpg" alt="Cocktail Samosa" class="img-fluid mb-2">
+        <p>Cocktail Samosa<br>Rs. 10 per pcs</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="cocktail-samosa" data-price="10">Add To Cart</button>
+      </div>
+      <div class="item text-center">
+        <img src="img/bang-bang-cauliflower-1.jpg" alt="Bang Bang Cauliflower" class="img-fluid mb-2">
+        <p>Bang Cauliflower<br>Rs. 250</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="bang-bang-cauliflower" data-price="250">Add To Cart</button>
+      </div>
+      <div class="item text-center">
+        <img src="img/paneer-tikka-recipe-2.jpg" alt="Paneer Tikka" class="img-fluid mb-2">
+        <p>Paneer Tikka<br>Rs. 250</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="paneer-tikka" data-price="250">Add To Cart</button>
+      </div>
+      <div class="item text-center">
+        <img src="img/sabudana-tikki-1.jpg" alt="Sabudana Tikki" class="img-fluid mb-2">
+        <p>Sabudana Tikki<br>Rs. 100</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="sabudana-tikki" data-price="100">Add To Cart</button>
+      </div>
+      <div class="item text-center">
+        <img src="img/cutlate.jpeg" alt="Cutlet" class="img-fluid mb-2">
+        <p>Cutlet<br>Rs. 80</p>
+        <button class="btn-custom btn-outline-dark add-to-cart" data-dish="cutlet" data-price="80">Add To Cart</button>
+      </div>
     </div>
   </div>
+
+  <script src="./menu.js"></script>
 </body>
 
 </html>

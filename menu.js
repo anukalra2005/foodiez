@@ -1,35 +1,166 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+// // // document.addEventListener('DOMContentLoaded', () => {
+// // //   const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-  document.querySelectorAll(".item").forEach((item) => {
-    const button = item.querySelector("button");
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
+// // //   addToCartButtons.forEach(button => {
+// // //     button.addEventListener('click', async (e) => {
+// // //       e.preventDefault(); // Prevent default form behavior if any
 
-      const product = {
-        name: item.querySelector("p").textContent.split('\n')[0], // Item name
-        price: item.querySelector("p").textContent.match(/Rs\. \d+/)[0], // Item price
-        image: item.querySelector("img").src // Image URL
-      };
+// // //       const dishName = button.getAttribute('data-dish');
+// // //       const price = parseFloat(button.getAttribute('data-price'));
+// // //       const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
 
-      // Add product to cart
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
+// // //       if (!userId) {
+// // //         alert('User not logged in!');
+// // //         return;
+// // //       }
 
-      // Optional: Display a message
-      alert(`${product.name} added to cart`);
+// // //       try {
+// // //         const response = await fetch('http://localhost:3000/add-to-cart', {
+// // //           method: 'POST',
+// // //           headers: {
+// // //             'Content-Type': 'application/json',
+// // //           },
+// // //           body: JSON.stringify({ userId, dishName, price }),
+// // //         });
 
-      // Send updated cart to backend
-      fetch('http://localhost:3000/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ items: cart }),
-      })
-      .then(response => response.json())
-      .then(data => console.log('Cart saved to server:', data))
-      .catch(error => console.error('Error:', error));
+// // //         const data = await response.json();
+
+// // //         if (response.ok) {
+// // //           alert('Item added to cart successfully!');
+// // //           window.location.href = 'cart.html'; // Redirect to cart
+// // //         } else {
+// // //           console.error('Failed to add item:', data);
+// // //           alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
+// // //         }
+// // //       } catch (error) {
+// // //         console.error('Error:', error);
+// // //         alert('An error occurred while adding to cart.');
+// // //       }
+// // //     });
+// // //   });
+// // // });
+// // document.addEventListener('DOMContentLoaded', () => {
+// //   const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+// //   addToCartButtons.forEach(button => {
+// //     button.addEventListener('click', async (e) => {
+// //       e.preventDefault(); // Prevent default form behavior if any
+
+// //       const dishName = button.getAttribute('data-dish');
+// //       const price = parseFloat(button.getAttribute('data-price'));
+// //       const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
+
+// //       if (!userId) {
+// //         alert('User not logged in!');
+// //         return;
+// //       }
+
+// //       try {
+// //         const response = await fetch('http://localhost:3000/add-to-cart', {
+// //           method: 'POST',
+// //           headers: {
+// //             'Content-Type': 'application/json',
+// //           },
+// //           body: JSON.stringify({ userId, dishName, price }),
+// //         });
+
+// //         const data = await response.json();
+
+// //         if (response.ok) {
+// //           alert('Item added to cart successfully!');
+// //           window.location.href = 'cart.html'; // Redirect to cart
+// //         } else {
+// //           console.error('Failed to add item:', data);
+// //           alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
+// //         }
+// //       } catch (error) {
+// //         console.error('Error:', error);
+// //         alert('An error occurred while adding to cart.');
+// //       }
+// //     });
+// //   });
+// // });
+// document.addEventListener('DOMContentLoaded', () => {
+//   const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+//   addToCartButtons.forEach(button => {
+//     button.addEventListener('click', async (e) => {
+//       e.preventDefault(); // Prevent default form behavior if any
+
+//       const dishName = button.getAttribute('data-dish');
+//       const price = parseFloat(button.getAttribute('data-price'));
+//       const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
+
+//       if (!userId) {
+//         alert('User not logged in!');
+//         return;
+//       }
+
+//       try {
+//         const response = await fetch('http://localhost:3000/add-to-cart', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify({ userId, dishName, price }),
+//         });
+
+//         const data = await response.json();
+
+//         if (response.ok) {
+//           alert('Item added to cart successfully!');
+//           window.location.href = 'cart.html'; // Redirect to cart page
+//         } else {
+//           console.error('Failed to add item:', data);
+//           alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
+//         }
+//       } catch (error) {
+//         console.error('Error:', error);
+//         alert('An error occurred while adding to cart.');
+//       }
+//     });
+//   });
+// });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', async (e) => {
+      e.preventDefault(); // Prevent default form behavior
+
+      const dishName = button.getAttribute('data-dish');
+      const price = parseFloat(button.getAttribute('data-price'));
+      const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
+
+      if (!userId) {
+        alert('User not logged in!');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/add-to-cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId, dishName, price }),
+        });
+
+        // Check if the response is JSON
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Item added to cart successfully!');
+          window.location.href = 'cart.html'; // Redirect to cart page
+        } else {
+          console.error('Failed to add item:', data);
+          alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while adding to cart.');
+      }
     });
   });
 });

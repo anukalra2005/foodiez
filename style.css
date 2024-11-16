@@ -1,98 +1,130 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Global Styles */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  padding: 20px;
+}
+
+.item {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  text-align: center;
+  height: auto;
+  width: auto;
+  margin-top: 10px;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+.item img {
+  height: 100px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+.item p {
+  text-align: center;
+  font-size: large;
+  font-style: oblique;
+  color: aliceblue;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+
+/* For medium screens (tablets and below) */
+@media (max-width: 768px) {
   .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
   }
-  .item {
-    
-    background-color: rgba(0,0,0,0.5);
-    padding: 10px;
-    text-align:center;
-    height:auto;
-    width:auto;
-    margin-top: 10px;
-    border-radius: 4px;
-  }
-  
-  .item:hover {
-    transform: scale(1.05);
-  }
-  
-  .item img {
-    height: 100px;
-    width: 150px; 
-    border-radius: 5px;
-  }
-  
+
   .item p {
-    text-align:center;
-    font-size:large;
-    font-style:oblique;
-    color: aliceblue;
+      font-size: 14px;
   }
-  
+
   button {
-    background-color: #28a745;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 10px;
-    border-radius: 10px;
+      font-size: 14px;
+      padding: 8px 15px;
   }
-  h1{
-    color: #ee0e91;
+}
+
+/* For small screens (phones and below) */
+@media (max-width: 480px) {
+  .container {
+      grid-template-columns: 1fr; /* One column for small screens */
   }
-  button:hover {
-    background-color: #218838;
+
+  .item p {
+      font-size: 12px;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-    }
-  
-    .item p {
-        font-size: 14px;
-    }
-  
-    button {
-        font-size: 14px;
-        padding: 8px 15px;
-    }
+
+  button {
+      font-size: 12px;
+      padding: 6px 10px;
   }
-  
-  @media (max-width: 480px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-  
-    .item p {
-        font-size: 12px;
-    }
-  
-    button {
-        font-size: 12px;
-        padding: 6px 10px;
-    }
+}
+
+.box {
+  background-image: url("https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg");
+  height: auto;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(75, 75, 77);
+  backdrop-filter: blur(3px);
+}
+
+/* For larger screens */
+@media (min-width: 1024px) {
+  .container {
+      grid-template-columns: repeat(4, 1fr); /* 4 items per row on large screens */
   }
-  .box
-    {     
-      background-image: url("https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg");
-      height:auto;
-      width: auto;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: rgb(75, 75, 77);
-      backdrop-filter: blur(3px);
-    }
+
+  .item img {
+      height: 120px;
+      width: 180px;
+  }
+}
+/* Style for round images with border */
+.item img {
+  border-radius: 50%; /* Keeps the circular shape */
+  height: 160px;
+  width: 160px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  object-fit: cover; /* Ensures the image fits perfectly */
+  border: 3px solid #fff; /* Adds a white border around the image */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow for more emphasis */
+}
+

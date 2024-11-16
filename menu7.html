@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="./a.css">
-    <link rel="stylesheet" href="./style.css">
-      <script src="https://cdn.lordicon.com/lordicon.js"></script>
-      <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <link rel="stylesheet" href="./menu5.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body class="box">
   
-  <!-- Navbar code as before --><nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <!-- Navbar code as before -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid d-flex align-items-right">
       <lord-icon class="navbar-brand" src="https://cdn.lordicon.com/mwgfcdaj.json"
         style="width:40px;height:40px; margin-bottom: -3px;">
@@ -29,7 +30,6 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="./project.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="./menu5.html">Menu</a></li>
-          
           <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="./faq.html">FAQs</a></li>
         </ul>
@@ -41,30 +41,39 @@
     </div>
   </nav>
 
-
   <!-- Menu items -->
   <div class="container">
-    <div class="item">
-      <img src="img/tomato soup.jpeg" alt="Tomato Soup">
-      <p>Tomato Soup<br>Rs. 100</p>
-      <button class="add-to-cart" data-name="Tomato Soup" data-price="100">Add To Cart</button>
+    <!-- <div class="row"> -->
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
+        <div class="item">
+          <img src="img/tomato soup.jpeg" class="img-fluid" alt="Tomato Soup">
+          <p>Tomato Soup<br>Rs. 100</p>
+          <button class=" btn-custom btn-outline-dark add-to-cart" data-name="Tomato Soup" data-price="100">Add To Cart</button>
+        <!-- </div> -->
+      </div>
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
+        <div class="item">
+          <img src="img/Palak-soup-1.jpg" class="img-fluid" alt="Spinach Soup">
+          <p>Spinach Soup<br>Rs. 80</p>
+          <button class=" btn-custom btn-outline-dark add-to-cart" data-name="Spinach Soup" data-price="80">Add To Cart</button>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
+        <div class="item">
+          <img src="img/corn soup.jpeg" class="img-fluid" alt="Sweet Corn Soup">
+          <p>Sweet Corn Soup<br>Rs. 80</p>
+          <button class="btn-custom btn-outline-dark add-to-cart" data-name="Sweet Corn Soup" data-price="80">Add To Cart</button>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
+        <div class="item">
+          <img src="img/lauki soup.jpeg" class="img-fluid" alt="Lauki Soup">
+          <p>Lauki Soup<br>Rs. 50</p>
+          <button class=" btn-custom btn-outline-dark add-to-cart" data-name="Lauki Soup" data-price="50">Add To Cart</button>
+        </div>
+      <!-- </div> -->
+      <!-- More items as needed -->
     </div>
-    <div class="item">
-      <img src="img/Palak-soup-1.jpg" alt="Spinach Soup">
-      <p>Spinach Soup<br>Rs. 80</p>
-      <button class="add-to-cart" data-name="Spinach Soup" data-price="80">Add To Cart</button>
-    </div>
-    <div class="item">
-      <img src="img/corn soup.jpeg" alt="Sweet Corn Soup">
-      <p>Sweet Corn Soup<br>Rs. 80</p>
-      <button class="add-to-cart" data-name="Sweet Corn Soup" data-price="80">Add To Cart</button>
-    </div>
-    <div class="item">
-      <img src="img/lauki soup.jpeg" alt="Lauki Soup">
-      <p>Lauki Soup<br>Rs. 50</p>
-      <button class="add-to-cart" data-name="Lauki Soup" data-price="50">Add To Cart</button>
-    </div>
-    <!-- More items as needed -->
   </div>
 
   <script src="menu.js"></script>
