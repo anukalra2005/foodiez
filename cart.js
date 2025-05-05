@@ -1,67 +1,70 @@
-const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-
-addToCartButtons.forEach(button => {
-  button.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    const item = button.closest('.item');
-    const dishName = item.querySelector('.dish-name').textContent.trim();
-    const priceText = item.querySelector('.dish-price').textContent.trim();
-    const price = parseFloat(priceText.replace('Rs.', '').trim());
-    const userId = 1; // This should be dynamically set based on the logged-in user
-
-    console.log('Sending request with:', { userId, dishName, price });
-
-    try {
-      const response = await fetch('http://localhost:3000/add-to-cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId: userId,
-          dishName: dishName,
-          price: price
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert('Item added to cart!');
-        updateCart();
-      } else {
-        alert('Failed to add item to cart: ' + data.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred.');
-    }
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  renderCart();
 });
+function saveCartToLocalStorage() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  localStorage.setItem('cartData', JSON.stringify(cart));
+}
+function renderCart() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartEl = document.getElementById('cart');
+  cartEl.innerHTML = '';
+  let total = 0;
 
-// Function to update the cart display
-async function updateCart() {
-  const response = await fetch('http://localhost:3000/get-cart');
-  const cartItems = await response.json();
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
 
-  const cartContainer = document.getElementById('cart-container');
-  cartContainer.innerHTML = '';
-
-  let totalPrice = 0;
-
-  cartItems.forEach(item => {
-    const cartItem = document.createElement('div');
-    cartItem.classList.add('list-group-item');
-    cartItem.innerHTML = `
-      <strong>${item.dish_name}</strong> - Rs. ${item.price} x ${item.quantity}
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    
+      <td>${item.name}</td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          <button class="btn btn-sm btn-outline-secondary me-1" onclick="updateQuantity(${index}, -1)">-</button>
+          <span>${item.quantity}</span>
+          <button class="btn btn-sm btn-outline-secondary ms-1" onclick="updateQuantity(${index}, 1)">+</button>
+        </div>
+      </td>
+      <td>₹${item.price}</td>
+      <td>₹${itemTotal}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
     `;
-    cartContainer.appendChild(cartItem);
-    totalPrice += item.price * item.quantity;
+    cartEl.appendChild(row);
   });
 
-  document.getElementById('total-price').textContent = totalPrice;
+  document.getElementById("cartTotal").innerText = `Total: ₹${total}`;
 }
 
-// Initial call to load cart on page load
-updateCart();
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.splice(index, 1); // Remove the item at given index
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function updateQuantity(index, delta) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart[index].quantity += delta;
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function choosePaymentMethod() {
+  alert("Redirecting to payment page... (functionality coming soon)");
+  
+  // Optionally, save cart data to localStorage before redirection
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  localStorage.setItem('cartData', JSON.stringify(cart));
+  
+  // Redirecting to the payment page
+  // Assuming totalAmount is calculated already from the cart
+localStorage.setItem("cartTotal", itemTotal);
+window.location.href = "payment.html";  // When Buy Now is clicked
+
+  // window.location.href = "payment.html";  // Change the URL if necessary
+}
+

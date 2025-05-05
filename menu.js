@@ -1,166 +1,31 @@
-// // // document.addEventListener('DOMContentLoaded', () => {
-// // //   const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-// // //   addToCartButtons.forEach(button => {
-// // //     button.addEventListener('click', async (e) => {
-// // //       e.preventDefault(); // Prevent default form behavior if any
-
-// // //       const dishName = button.getAttribute('data-dish');
-// // //       const price = parseFloat(button.getAttribute('data-price'));
-// // //       const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
-
-// // //       if (!userId) {
-// // //         alert('User not logged in!');
-// // //         return;
-// // //       }
-
-// // //       try {
-// // //         const response = await fetch('http://localhost:3000/add-to-cart', {
-// // //           method: 'POST',
-// // //           headers: {
-// // //             'Content-Type': 'application/json',
-// // //           },
-// // //           body: JSON.stringify({ userId, dishName, price }),
-// // //         });
-
-// // //         const data = await response.json();
-
-// // //         if (response.ok) {
-// // //           alert('Item added to cart successfully!');
-// // //           window.location.href = 'cart.html'; // Redirect to cart
-// // //         } else {
-// // //           console.error('Failed to add item:', data);
-// // //           alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
-// // //         }
-// // //       } catch (error) {
-// // //         console.error('Error:', error);
-// // //         alert('An error occurred while adding to cart.');
-// // //       }
-// // //     });
-// // //   });
-// // // });
-// // document.addEventListener('DOMContentLoaded', () => {
-// //   const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-// //   addToCartButtons.forEach(button => {
-// //     button.addEventListener('click', async (e) => {
-// //       e.preventDefault(); // Prevent default form behavior if any
-
-// //       const dishName = button.getAttribute('data-dish');
-// //       const price = parseFloat(button.getAttribute('data-price'));
-// //       const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
-
-// //       if (!userId) {
-// //         alert('User not logged in!');
-// //         return;
-// //       }
-
-// //       try {
-// //         const response = await fetch('http://localhost:3000/add-to-cart', {
-// //           method: 'POST',
-// //           headers: {
-// //             'Content-Type': 'application/json',
-// //           },
-// //           body: JSON.stringify({ userId, dishName, price }),
-// //         });
-
-// //         const data = await response.json();
-
-// //         if (response.ok) {
-// //           alert('Item added to cart successfully!');
-// //           window.location.href = 'cart.html'; // Redirect to cart
-// //         } else {
-// //           console.error('Failed to add item:', data);
-// //           alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
-// //         }
-// //       } catch (error) {
-// //         console.error('Error:', error);
-// //         alert('An error occurred while adding to cart.');
-// //       }
-// //     });
-// //   });
-// // });
-// document.addEventListener('DOMContentLoaded', () => {
-//   const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-//   addToCartButtons.forEach(button => {
-//     button.addEventListener('click', async (e) => {
-//       e.preventDefault(); // Prevent default form behavior if any
-
-//       const dishName = button.getAttribute('data-dish');
-//       const price = parseFloat(button.getAttribute('data-price'));
-//       const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
-
-//       if (!userId) {
-//         alert('User not logged in!');
-//         return;
-//       }
-
-//       try {
-//         const response = await fetch('http://localhost:3000/add-to-cart', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify({ userId, dishName, price }),
-//         });
-
-//         const data = await response.json();
-
-//         if (response.ok) {
-//           alert('Item added to cart successfully!');
-//           window.location.href = 'cart.html'; // Redirect to cart page
-//         } else {
-//           console.error('Failed to add item:', data);
-//           alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
-//         }
-//       } catch (error) {
-//         console.error('Error:', error);
-//         alert('An error occurred while adding to cart.');
-//       }
-//     });
-//   });
-// });
-
 document.addEventListener('DOMContentLoaded', () => {
-  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+  // Event listener for each add-to-cart button
+  document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      // Get the dish details from the button attributes
+      const dishName = this.getAttribute('data-dish');
+      const price = parseFloat(this.getAttribute('data-price'));
+      const img = this.getAttribute('data-img');
 
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', async (e) => {
-      e.preventDefault(); // Prevent default form behavior
+      // Get the cart from localStorage, or initialize an empty array
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      const dishName = button.getAttribute('data-dish');
-      const price = parseFloat(button.getAttribute('data-price'));
-      const userId = localStorage.getItem('userId') || 1; // Placeholder for user ID
+      // Check if the item is already in the cart
+      const existingItem = cart.find(item => item.name === dishName);
 
-      if (!userId) {
-        alert('User not logged in!');
-        return;
+      if (existingItem) {
+        existingItem.quantity += 1; // Increase quantity if item already in the cart
+      } else {
+        // Add new item to the cart
+        cart.push({ name: dishName, price, img, quantity: 1 });
       }
 
-      try {
-        const response = await fetch('http://localhost:3000/add-to-cart', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ userId, dishName, price }),
-        });
+      // Save updated cart to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
 
-        // Check if the response is JSON
-        const data = await response.json();
-
-        if (response.ok) {
-          alert('Item added to cart successfully!');
-          window.location.href = 'cart.html'; // Redirect to cart page
-        } else {
-          console.error('Failed to add item:', data);
-          alert('Failed to add item to cart: ' + (data.message || 'Unknown error'));
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while adding to cart.');
-      }
+      // Show success message and redirect to cart page
+      alert("✅ Item added to cart!");
+      window.location.href = 'cart.html'; // Redirect to the cart page
     });
   });
 });

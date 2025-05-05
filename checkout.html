@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  <h2>Thank you for your order!</h2>
+  <p>Your order has been placed and is being prepared. 🍔🍕🍟</p>
+  <button onclick="goHome()">Go Back to Shop</button>
+
+  <script>
+    localStorage.removeItem('cart'); // Clear cart after checkout
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
