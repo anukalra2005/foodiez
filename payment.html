@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Choose Payment Method - Foodiez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .qr-section, .confirmation-section {
+      display: none;
+    }
+    .qr-code {
+      max-width: 250px;
+      margin: 20px auto;
+    }
+    .progress {
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 class="mb-4">Select Payment Method</h2>
+
+    <!-- Payment Method Buttons -->
+    <div id="payment-options">
+      <button onclick="selectUPI()" class="btn btn-success mb-3">Pay with UPI</button><br>
+      <button onclick="selectCOD()" class="btn btn-warning">Cash on Delivery (₹10 extra)</button>
+    </div>
+
+    <!-- QR Section -->
+    <!-- <div class="qr-section" id="qr-section">
+      <h4>Scan this QR Code</h4>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=anukalra@paytm&pn=Foodiez&am=100&cu=INR" 
+           alt="QR Code" class="qr-code">
+      <p>Scan using any UPI app</p>
+      <button onclick="confirmPayment('upi')" class="btn btn-primary mt-3">Done</button>
+    </div> -->
+    <!-- QR Section -->
+<div class="qr-section" id="qr-section">
+  <h4>Scan this QR Code</h4>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=anukalra@paytm&pn=Foodiez&am=100&cu=INR" 
+       alt="QR Code" class="qr-code">
+  <p>Pay Amount: <span id="upi-amount"></span></p>
+  <button onclick="confirmPayment('upi')" class="btn btn-primary mt-3">Done</button>
+</div>
+
+<!-- COD Confirmation -->
+<div class="qr-section" id="cod-section">
+  <p>Total with Delivery: <span id="cod-amount"></span></p>
+  <button onclick="confirmPayment('cod')" class="btn btn-primary mt-3">Done</button>
+</div>
+
+
+
+    <!-- COD Confirmation -->
+    <div class="qr-section" id="cod-section">
+      <p>₹10 extra will be added for delivery charges.</p>
+      <p><strong>Total: ₹110</strong></p>
+      <button onclick="confirmPayment('cod')" class="btn btn-primary mt-3">Done</button>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div class="confirmation-section" id="confirmation-section">
+      <h4>✅ Payment Successful</h4>
+      <p>Food will be delivered soon.</p>
+      <p>Thanks! We’re cooking it fresh for you!</p>
+
+      <!-- Static Tracking Progress -->
+      <div class="mt-4">
+        <h6>Tracking Order</h6>
+        <div class="progress">
+          <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+               style="width: 100%">Order Confirmed</div>
+        </div>
+      </div>
+    </div>
+    <div class="confirmation-section" id="confirmation-sectioncod">
+      <h4>✅ Order Confirmed!</h4>
+      <p>Please keep cash ready on delivery.</p>
+      <p>Food will be delivered soon.</p>
+      <p>Thanks! We’re cooking it fresh for you!</p>
+
+      <!-- Static Tracking Progress -->
+      <div class="mt-4">
+        <h6>Tracking Order</h6>
+        <div class="progress">
+          <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+               style="width: 100%">Order Confirmed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script>
+
+    function selectUPI() {
+      document.getElementById("payment-options").style.display = "none";
+      document.getElementById("qr-section").style.display = "block";
+    }
+
+    function selectCOD() {
+      document.getElementById("payment-options").style.display = "none";
+      document.getElementById("cod-section").style.display = "block";
+    }
+    
+
+    function confirmPayment(method) {
+      if (method === "upi") {
+        alert("Payment received via UPI!");
+      } else if (method === "cod") {
+        alert("COD selected. ₹10 extra added.");
+      }
+      document.getElementById("qr-section").style.display = "none";
+      document.getElementById("cod-section").style.display = "none";
+      document.getElementById("confirmation-section").style.display = "block";
+    }
+    
+  </script> -->
+  <script>
+    let cartTotal = parseFloat(localStorage.getItem("cartTotal")) || 0;
+  
+    function selectUPI() {
+      document.getElementById("payment-options").style.display = "none";
+      document.getElementById("qr-section").style.display = "block";
+      document.getElementById("upi-amount").innerText = `₹${cartTotal.toFixed(2)}`;
+    }
+  
+    function selectCOD() {
+      document.getElementById("payment-options").style.display = "none";
+      document.getElementById("cod-section").style.display = "block";
+      let codTotal = cartTotal + 10;
+      document.getElementById("cod-amount").innerText = `₹${codTotal.toFixed(2)} (₹10 extra for delivery)`;
+    }
+  
+    function confirmPayment(method) {
+      if (method === "upi") {
+        alert("Payment received via UPI!");
+      } else if (method === "cod") {
+        alert("COD selected. ₹10 extra added.Order placed with Cash on Delivery");
+        
+      }
+      document.getElementById("qr-section").style.display = "none";
+      document.getElementById("cod-section").style.display = "none";
+      if(method==="upi"){
+        document.getElementById("qr-section").style.display = "none";
+      document.getElementById("cod-section").style.display = "none";
+      document.getElementById("confirmation-section").style.display = "none";
+      document.getElementById("confirmation-sectioncod").style.display = "block";
+      }
+      else {
+      document.getElementById("confirmation-section").style.display = "block";
+      document.getElementById("confirmation-sectioncod").style.display = "none";
+
+      }
+    }
+  </script>
+  
+
+</body>
+</html>
