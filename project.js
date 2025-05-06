@@ -234,6 +234,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const toLogin = document.getElementById("toLogin");
   const toSignup = document.getElementById("toSignup");
 
+  const explore=document.getElementById("explore")
+  const special=document.getElementById("special")
+
+
+
   // Show signup form with blur on load
   blurBackground.style.display = "block";
   signupForm.style.display = "block";
@@ -262,8 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loginForm.style.display = "none";
   });
 
-  closeLogin.addEventListener("click", hideAll);
-  closeSignup.addEventListener("click", hideAll);
+  closeLogin.addEventListener("click", showWelcome);
+  closeSignup.addEventListener("click", showWelcome);
 
   toLogin.addEventListener("click", function (e) {
     e.preventDefault();
@@ -426,3 +431,11 @@ function showWelcome() {
     }, 1000); // 1000 milliseconds = 1 second
   }
 }
+explore.addEventListener("click",()=>{
+  // window.location
+  window.location.href = "menu5.html";
+})
+special.addEventListener("click",()=>{
+  // window.location
+  window.location.href = "special.html";
+})
