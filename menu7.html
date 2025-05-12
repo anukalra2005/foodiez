@@ -1,25 +1,35 @@
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
-    <link rel="stylesheet" href="./a.css">
-    <link rel="stylesheet" href="./menu5.css">
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <link rel="stylesheet" href="./a.css">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+  <link rel="stylesheet" href="./menu5.css">
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Quicksand:wght@300..700&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body class="box">
-  
-  <!-- Navbar code as before -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid d-flex align-items-right">
-      <lord-icon class="navbar-brand" src="https://cdn.lordicon.com/mwgfcdaj.json"
-        style="width:40px;height:40px; margin-bottom: -3px;">
-      </lord-icon>
+      <lord-icon class="navbar-brand" src="https://cdn.lordicon.com/mwgfcdaj.json" style="width:40px;height:40px; margin-bottom: -3px;"></lord-icon>
       <a class="navbar-brand ms-2" href="#" style="font-size:1.25rem;">Foodiez</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -40,42 +50,44 @@
       </div>
     </div>
   </nav>
-
-  <!-- Menu items -->
   <div class="container">
     <!-- <div class="row"> -->
       <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
         <div class="item">
           <img src="img/tomato soup.jpeg" class="img-fluid" alt="Tomato Soup">
           <p>Tomato Soup<br>Rs. 100</p>
-          <button class=" btn-custom btn-outline-dark add-to-cart-btn" data-name="Tomato Soup" data-price="100">Add To Cart</button>
+          <button class=" btn-custom btn-outline-dark add-to-cart-btn" data-dish="Tomato Soup" data-price="100">Add To Cart</button>
         <!-- </div> -->
       </div>
       <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
         <div class="item">
           <img src="img/Palak-soup-1.jpg" class="img-fluid" alt="Spinach Soup">
           <p>Spinach Soup<br>Rs. 80</p>
-          <button class=" btn-custom btn-outline-dark add-to-cart-btn" data-name="Spinach Soup" data-price="80">Add To Cart</button>
+          <button class=" btn-custom btn-outline-dark add-to-cart-btn" data-dish="Spinach Soup" data-price="80">Add To Cart</button>
         </div>
       <!-- </div> -->
       <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
         <div class="item">
           <img src="img/corn soup.jpeg" class="img-fluid" alt="Sweet Corn Soup">
           <p>Sweet Corn Soup<br>Rs. 80</p>
-          <button class="btn-custom btn-outline-dark add-to-cart-btn" data-name="Sweet Corn Soup" data-price="80">Add To Cart</button>
+          <button class="btn-custom btn-outline-dark add-to-cart-btn" data-dish="Sweet Corn Soup" data-price="80">Add To Cart</button>
         </div>
       <!-- </div> -->
       <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> -->
         <div class="item">
           <img src="img/lauki soup.jpeg" class="img-fluid" alt="Lauki Soup">
           <p>Lauki Soup<br>Rs. 50</p>
-          <button class=" btn-custom btn-outline-dark add-to-cart-btn" data-name="Lauki Soup" data-price="50">Add To Cart</button>
+          <button class=" btn-custom btn-outline-dark add-to-cart-btn" data-dish="Lauki Soup" data-price="50">Add To Cart</button>
         </div>
       <!-- </div> -->
       <!-- More items as needed -->
     </div>
   </div>
-
+  <!-- Dish Items -->
+  
   <script src="menu.js"></script>
+  <!-- <script src="./cart.js"></script> -->
+
 </body>
+
 </html>

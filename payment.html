@@ -157,15 +157,16 @@
       if(method==="upi"){
         document.getElementById("qr-section").style.display = "none";
       document.getElementById("cod-section").style.display = "none";
-      document.getElementById("confirmation-section").style.display = "none";
-      document.getElementById("confirmation-sectioncod").style.display = "block";
-      }
-      else {
       document.getElementById("confirmation-section").style.display = "block";
       document.getElementById("confirmation-sectioncod").style.display = "none";
+      }
+      else {
+      document.getElementById("confirmation-section").style.display = "none";
+      document.getElementById("confirmation-sectioncod").style.display = "block";
 
       }
     }
+    localStorage.removeItem('cart');
   </script>
   
 

@@ -321,8 +321,8 @@ document.getElementById("signupFormContent").addEventListener("submit", async (e
     if (response.ok) {
       alert("Signup successful!");
       
-      // showWelcome();
-      // clearSignupForm();
+      showWelcome();
+      clearSignupForm();
       welcomeMessage.style.display = "block";
       blurBackground.style.display = "none";
       loginForm.style.display = "none";
@@ -345,15 +345,47 @@ document.getElementById("signupFormContent").addEventListener("submit", async (e
 
   
   // Replace dummy login check with real fetch call
+// document.getElementById("loginFormContent").addEventListener("submit", async (e) => {
+//   e.preventDefault();
+//   const email = e.target.querySelector('input[type="email"]').value;
+//   const password = e.target.querySelector('input[type="password"]').value;
+
+//   try {
+//     const response = await fetch('http://localhost:3000/login', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ email, password })
+//     });
+
+//     const result = await response.json();
+
+//     if (response.ok && result.userId) {
+//       localStorage.setItem("userId", result.userId);
+//       welcomeMessage.style.display = "block";
+//       blurBackground.style.display = "none";
+//       loginForm.style.display = "none";
+//       logoutBtn.style.display = "block";
+//       alert("Logged in successfully!");
+//       // document.getElementById('signup-form').reset();
+
+//       document.getElementById("loginFormContent").reset();
+//     } else {
+//       alert("Login failed: " + result.message);
+//     }
+//   } catch (error) {
+//     alert("Login error: " + error.message);
+//   }
+// });
+
 document.getElementById("loginFormContent").addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = e.target.querySelector('input[type="email"]').value;
   const password = e.target.querySelector('input[type="password"]').value;
 
   try {
-    const response = await fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
     });
 
@@ -361,21 +393,19 @@ document.getElementById("loginFormContent").addEventListener("submit", async (e)
 
     if (response.ok && result.userId) {
       localStorage.setItem("userId", result.userId);
-      welcomeMessage.style.display = "block";
-      blurBackground.style.display = "none";
       loginForm.style.display = "none";
+      blurBackground.style.display = "none";
       logoutBtn.style.display = "block";
       alert("Logged in successfully!");
-      // document.getElementById('signup-form').reset();
-
-      document.getElementById("loginFormContent").reset();
     } else {
       alert("Login failed: " + result.message);
     }
   } catch (error) {
-    alert("Login error: " + error.message);
+    console.error("Error during login:", error);
+    alert("Something went wrong. Try again later.");
   }
 });
+
 
   // Handle Login
   document.getElementById("loginFormContent").addEventListener("submit", function (e) {
