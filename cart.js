@@ -17,7 +17,6 @@ function renderCart() {
 
     const row = document.createElement('tr');
     row.innerHTML = `
-    
       <td>${item.name}</td>
       <td>
         <div class="d-flex justify-content-center align-items-center">

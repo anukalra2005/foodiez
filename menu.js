@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.style.display = 'none'; // Hide the "Add to Cart" button
     });
   });
-
+//
   // Add click event to viewCartBtns (redirect to cart page)
   document.querySelectorAll('.view-cart-btn').forEach(button => {
     button.addEventListener('click', function () {
